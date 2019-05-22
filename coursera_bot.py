@@ -12,8 +12,9 @@ START, ADDR, COORD, PHOTO, SAVE, NEARBY, SEND = range(7)
 
 USER_STATE = defaultdict(lambda: START)
 PLACES = defaultdict(lambda: {})
-photo_dir = 'C:\\tele_bot\\storage\\'
-db = 'C:\\tele_bot\\storage\\db'
+base = os.getcwd()
+photo_dir = os.path.join(base,'storage','photos')#'C:\\tele_bot\\storage\\'
+db = os.path.join(base,'storage','db')#'C:\\tele_bot\\storage\\db'
 but1 = ['Помощь', 'Добавить', 'Все', '10', 'Удалить']
 but2 = ['Помощь', 'Добавить', '10', 'Все']
 but3 = ['Помощь', 'Добавить']
