@@ -68,7 +68,7 @@ def update_db(user_id):
         content[str(user_id)] = []
     update_locations(user_id, 'seq', seq)
     content[str(user_id)].append(PLACES[user_id])
-    print('end', content)
+    #print('end', content)
     with open(db, 'w') as wa:
         json.dump(content,wa)
 
