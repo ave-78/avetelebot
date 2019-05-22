@@ -178,6 +178,8 @@ def handle_save(message):
         try:
             file = bot.get_file(message.photo[-1].file_id)
             requested_file = requests.get('https://api.telegram.org/file/bot{0}/{1}'.format(token, file.file_path))
+            print('photo_dir, foto_file', photo_dir,file.file_path)
+            print('db', db)
             with open(os.path.join(photo_dir,file.file_path), 'wb') as f:
                 f.write(requested_file.content)
             update_state(message, SAVE)
