@@ -1,1 +1,1 @@
-web: python coursera_bot.py $PORT
+worker: python coursera_bot.py
