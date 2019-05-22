@@ -1,1 +1,1 @@
-worker: python coursera_bot.py
+web: python coursera_bot.py
