@@ -386,7 +386,7 @@ def callback_handler(callback_query):
                 bot.send_photo(chat_id=message.chat.id, caption=adr, photo=foto, reply_markup=keyboard10)
             else:
                 bot.send_message(chat_id=message.chat.id, text=adr)
-                bot.send_sticker(message.chat.id, "CAADAgADsAMAAkcVaAkD4y6y-9PwYwI", reply_markup=keyboard10)
+                bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     elif text == '3':
         content = read_txt_db()
         seq = get_seq(content)
@@ -397,7 +397,7 @@ def callback_handler(callback_query):
                 bot.send_photo(chat_id=message.chat.id, caption=adr, photo=foto, reply_markup=keyboard10)
             else:
                 bot.send_message(chat_id=message.chat.id, text=adr)
-                bot.send_sticker(message.chat.id, "CAADAgADsAMAAkcVaAkD4y6y-9PwYwI", reply_markup=keyboard10)
+                bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     elif text == '4':
         content = read_txt_db()
         l = len(content[str(message.chat.id)])
@@ -409,7 +409,7 @@ def callback_handler(callback_query):
                 bot.send_photo(chat_id=message.chat.id, caption=adr, photo=foto, reply_markup=keyboard10)
             else:
                 bot.send_message(chat_id=message.chat.id, text=adr)
-                bot.send_sticker(message.chat.id, "CAADAgADsAMAAkcVaAkD4y6y-9PwYwI", reply_markup=keyboard10)
+                bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     elif text == '5':
         content = read_txt_db()
         seq = get_seq(content)
@@ -420,7 +420,7 @@ def callback_handler(callback_query):
                 bot.send_photo(chat_id=message.chat.id, caption=adr, photo=foto, reply_markup=keyboard10)
             else:
                 bot.send_message(chat_id=message.chat.id, text=adr)
-                bot.send_sticker(message.chat.id, "CAADAgADsAMAAkcVaAkD4y6y-9PwYwI", reply_markup=keyboard10)
+                bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     elif text == '6':
         content = read_txt_db()
         seq = get_seq(content)
@@ -431,7 +431,7 @@ def callback_handler(callback_query):
                 bot.send_photo(chat_id=message.chat.id, caption=adr, photo=foto, reply_markup=keyboard10)
             else:
                 bot.send_message(chat_id=message.chat.id, text=adr)
-                bot.send_sticker(message.chat.id, "CAADAgADsAMAAkcVaAkD4y6y-9PwYwI", reply_markup=keyboard10)
+                bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     elif text == '7':
         content = read_txt_db()
         seq = get_seq(content)
@@ -442,7 +442,7 @@ def callback_handler(callback_query):
                 bot.send_photo(chat_id=message.chat.id, caption=adr, photo=foto, reply_markup=keyboard10)
             else:
                 bot.send_message(chat_id=message.chat.id, text=adr)
-                bot.send_sticker(message.chat.id, "CAADAgADsAMAAkcVaAkD4y6y-9PwYwI", reply_markup=keyboard10)
+                bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     elif text == '8':
         content = read_txt_db()
         seq = get_seq(content)
@@ -453,7 +453,7 @@ def callback_handler(callback_query):
                 bot.send_photo(chat_id=message.chat.id, caption=adr, photo=foto, reply_markup=keyboard10)
             else:
                 bot.send_message(chat_id=message.chat.id, text=adr)
-                bot.send_sticker(message.chat.id, "CAADAgADsAMAAkcVaAkD4y6y-9PwYwI", reply_markup=keyboard10)
+                bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     elif text == '9':
         content = read_txt_db()
         seq = get_seq(content)
@@ -464,7 +464,7 @@ def callback_handler(callback_query):
                 bot.send_photo(chat_id=message.chat.id, caption=adr, photo=foto, reply_markup=keyboard10)
             else:
                 bot.send_message(chat_id=message.chat.id, text=adr)
-                bot.send_sticker(message.chat.id, "CAADAgADsAMAAkcVaAkD4y6y-9PwYwI", reply_markup=keyboard10)
+                bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     elif text == '10':
         content = read_txt_db()
         seq = get_seq(content)
@@ -475,7 +475,7 @@ def callback_handler(callback_query):
                 bot.send_photo(chat_id=message.chat.id, caption=adr, photo=foto, reply_markup=keyboard10)
             else:
                 bot.send_message(chat_id=message.chat.id, text=adr)
-                bot.send_sticker(message.chat.id, "CAADAgADsAMAAkcVaAkD4y6y-9PwYwI", reply_markup=keyboard10)
+                bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     elif text == 'Обратно':
         keyboard1 = create_keyboard1()
         bot.send_sticker(message.chat.id, "CAADAgADYAIAAgvNDgNERok1XlXTOQI", reply_markup=keyboard1)
