@@ -137,7 +137,6 @@ def get_one_loc(user_id, content, seq):
 
 def calc_distance(user_id,lat, lon):
     content = read_txt_db()
-    print(user_id, content)
     msg = ''
     if content.get(str(user_id)):
         for entry in content[str(user_id)]:
@@ -227,7 +226,6 @@ def handle_photo(message):
             bot.send_message(chat_id=message.chat.id, text='Расстояния до сохраненных локаций в радиусе 500 метров 🚶 :')
 
             msg = calc_distance(message.chat.id, message.location.latitude, message.location.longitude)
-            print(msg)
             if msg != '':
                 bot.send_message(chat_id=message.chat.id, text=msg, reply_markup=keyboard1)
             else:
