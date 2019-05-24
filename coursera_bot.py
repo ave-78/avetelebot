@@ -252,7 +252,7 @@ def handle_save(message):
             update_locations(message.chat.id, 'photo', message.photo[-1].file_id)
             update_db(message.chat.id, content)
             bot.send_message(chat_id=message.chat.id, text='Место сохранено')
-            bot.send_sticker(message.chat.id, "CAADAgADpAMAAkcVaAncrFqw2LvC0gI", reply_markup=keyboard1)
+            bot.send_sticker(message.chat.id, "CAADAgADYQIAAgvNDgPlVMLdWPpKoAI", reply_markup=keyboard1)
             update_lock(message, UNLOCK)
         except:
             bot.send_message(chat_id=message.chat.id, text='Фотографии не обнаружено, сделайте фотографию '
@@ -310,7 +310,7 @@ def handle_list(message):
             bot.send_photo(chat_id=message.chat.id, caption=adr, photo=foto, reply_markup=keyboard10)
         else:
             bot.send_message(chat_id=message.chat.id, text=adr)
-            bot.send_sticker(message.chat.id, "CAADAgADsAMAAkcVaAkD4y6y-9PwYwI", reply_markup=keyboard10)
+            bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     else:
         keyboard3 = create_keyboard3()
         bot.send_message(chat_id=message.chat.id, text='Вы еще не добавили не одной локации',
@@ -351,7 +351,7 @@ def callback_handler(callback_query):
     if text == 'Удалить':
         keyboard3 = create_keyboard3()
         delete_user_loc(message.chat.id)
-        bot.send_sticker(message.chat.id, "CAADAgADqwMAAkcVaAm63TRadD-lEgI", reply_markup=keyboard3)
+        bot.send_sticker(message.chat.id, "CAADAgADYQIAAgvNDgPlVMLdWPpKoAI", reply_markup=keyboard3)
         bot.answer_callback_query(callback_query.id, text='Сохраненные локации удалены')
     elif text == 'Список':
         keyboard1 = create_keyboard1()
@@ -371,7 +371,7 @@ def callback_handler(callback_query):
                 bot.send_photo(chat_id=message.chat.id, caption=adr, photo=foto, reply_markup=keyboard10)
             else:
                 bot.send_message(chat_id=message.chat.id, text=adr)
-                bot.send_sticker(message.chat.id, "CAADAgADsAMAAkcVaAkD4y6y-9PwYwI", reply_markup=keyboard10)
+                bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
         else:
             keyboard3 = create_keyboard3()
             bot.send_message(chat_id=message.chat.id, text='Вы еще не добавили не одной локации',
