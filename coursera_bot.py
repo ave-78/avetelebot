@@ -252,7 +252,7 @@ def handle_save(message):
             update_locations(message.chat.id, 'photo', message.photo[-1].file_id)
             update_db(message.chat.id, content)
             bot.send_message(chat_id=message.chat.id, text='Место сохранено')
-            bot.send_sticker(message.chat.id, "CAADAgADYQIAAgvNDgPlVMLdWPpKoAI", reply_markup=keyboard1)
+            bot.send_sticker(message.chat.id, "CAADAgADYAIAAgvNDgNERok1XlXTOQI", reply_markup=keyboard1)
             update_lock(message, UNLOCK)
         except:
             bot.send_message(chat_id=message.chat.id, text='Фотографии не обнаружено, сделайте фотографию '
