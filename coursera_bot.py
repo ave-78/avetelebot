@@ -478,7 +478,7 @@ def callback_handler(callback_query):
                 bot.send_sticker(message.chat.id, "CAADAgADsAMAAkcVaAkD4y6y-9PwYwI", reply_markup=keyboard10)
     elif text == 'Обратно':
         keyboard1 = create_keyboard1()
-        bot.send_sticker(message.chat.id, "CAADAgADrwMAAkcVaAncQgZSOF7xMQI", reply_markup=keyboard1)
+        bot.send_sticker(message.chat.id, "CAADAgADYAIAAgvNDgNERok1XlXTOQI", reply_markup=keyboard1)
     elif text == 'Добавить':
         update_lock(message, LOCK)
         bot.send_message(chat_id=message.chat.id, text='Введите адрес места')
