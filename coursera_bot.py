@@ -124,6 +124,7 @@ def view_10loc(user_id):
         l = len(content.get(str(user_id)))
         for entry in content[str(user_id)]:
             if entry['seq'] in range(l-11, l+1):
+                print(entry['seq'],'---',l, l-11,l+1)
                 msg += str(entry['seq']) + '. ' + entry['address'] + ' (' + str(round(entry['coordinates'][0], 2)) +\
                            ',' + str(round(entry['coordinates'][1], 2)) + ')' + '\n'
     return msg
@@ -176,12 +177,13 @@ def handle_grit(message):
     update_state(message, START)
 
 
-@bot.message_handler(func=lambda message: get_state(message) == START)
+#@bot.message_handler(func=lambda message: get_state(message) == START)
 @bot.message_handler(commands=['add'])
 def handle_start(message):
-    update_lock(message, LOCK)
-    bot.send_message(chat_id=message.chat.id, text='Введите адрес места ➕')
-    update_state(message, ADDR)
+    if get_state(message) == START:
+        update_lock(message, LOCK)
+        bot.send_message(chat_id=message.chat.id, text='Введите адрес места ➕')
+        update_state(message, ADDR)
 
 
 @bot.message_handler(func=lambda message: get_state(message) == ADDR)
@@ -296,7 +298,7 @@ def handle_list(message):
         else:
             but10 = list(map(str, range(1, len(content[str(user_id)]) + 1)))
         but10.append('Обратно')
-        keyboard10 = types.InlineKeyboardMarkup(row_width=len(but10))
+        keyboard10 = types.InlineKeyboardMarkup(row_width=5)
         buttons10 = [types.InlineKeyboardButton(text=b, callback_data=b) for b in but10]
         keyboard10.add(*buttons10)
         return keyboard10
@@ -324,10 +326,13 @@ def handle_reset(message):
 
 @bot.callback_query_handler(func=lambda x: True)
 def callback_handler(callback_query):
-    def get_seq(content):
+    message = callback_query.message
+    text = callback_query.data
+
+    def get_seq(content, text):
         l = len(content[str(message.chat.id)])
         if l > 10:
-            return l - 11 + int(text)
+            return l - 10 + int(text)
         else:
             return int(text)
 
@@ -338,13 +343,10 @@ def callback_handler(callback_query):
         else:
             but10 = list(map(str, range(1, len(content[str(user_id)]) + 1)))
         but10.append('Обратно')
-        keyboard10 = types.InlineKeyboardMarkup(row_width=len(but10))
+        keyboard10 = types.InlineKeyboardMarkup(row_width=5)
         buttons10 = [types.InlineKeyboardButton(text=b, callback_data=b) for b in but10]
         keyboard10.add(*buttons10)
         return keyboard10
-
-    message = callback_query.message
-    text = callback_query.data
 
     if text == 'Удалить':
         keyboard3 = create_keyboard3()
@@ -360,11 +362,12 @@ def callback_handler(callback_query):
         else:
             bot.send_message(chat_id=message.chat.id, text='Вы еще не добавили не одной локации', reply_markup=keyboard1)
 
-    elif text == 'Последние' or text == '1':
+    elif text == 'Последние':
         content = read_txt_db()
+        seq = get_seq(content, '1')
         if content.get(str(message.chat.id)):
             keyboard10 = create_keyboard10(message.chat.id, content)
-            adr, foto = get_one_loc(message.chat.id, content, 1)
+            adr, foto = get_one_loc(message.chat.id, content, seq)
             if foto:
                 bot.send_photo(chat_id=message.chat.id, caption=adr, photo=foto, reply_markup=keyboard10)
             else:
@@ -374,9 +377,21 @@ def callback_handler(callback_query):
             keyboard3 = create_keyboard3()
             bot.send_message(chat_id=message.chat.id, text='Вы еще не добавили не одной локации',
                              reply_markup=keyboard3)
+    elif text == '1':
+        content = read_txt_db()
+        seq = get_seq(content,text)
+        print(seq)
+        if content.get(str(message.chat.id)):
+            keyboard10 = create_keyboard10(message.chat.id, content)
+            adr, foto = get_one_loc(message.chat.id, content, seq)
+            if foto:
+                bot.send_photo(chat_id=message.chat.id, caption=adr, photo=foto, reply_markup=keyboard10)
+            else:
+                bot.send_message(chat_id=message.chat.id, text=adr)
+                bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     elif text == '2':
         content = read_txt_db()
-        seq = get_seq(content)
+        seq = get_seq(content,text)
         if content.get(str(message.chat.id)):
             keyboard10 = create_keyboard10(message.chat.id, content)
             adr, foto = get_one_loc(message.chat.id, content, seq)
@@ -387,7 +402,7 @@ def callback_handler(callback_query):
                 bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     elif text == '3':
         content = read_txt_db()
-        seq = get_seq(content)
+        seq = get_seq(content,text)
         if content.get(str(message.chat.id)):
             keyboard10 = create_keyboard10(message.chat.id, content)
             adr, foto = get_one_loc(message.chat.id, content, seq)
@@ -398,8 +413,8 @@ def callback_handler(callback_query):
                 bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     elif text == '4':
         content = read_txt_db()
-        l = len(content[str(message.chat.id)])
-        seq = get_seq(content)
+        #l = len(content[str(message.chat.id)])
+        seq = get_seq(content,text)
         if content.get(str(message.chat.id)):
             keyboard10 = create_keyboard10(message.chat.id, content)
             adr, foto = get_one_loc(message.chat.id, content, seq)
@@ -410,7 +425,7 @@ def callback_handler(callback_query):
                 bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     elif text == '5':
         content = read_txt_db()
-        seq = get_seq(content)
+        seq = get_seq(content,text)
         if content.get(str(message.chat.id)):
             keyboard10 = create_keyboard10(message.chat.id, content)
             adr, foto = get_one_loc(message.chat.id, content, seq)
@@ -421,7 +436,7 @@ def callback_handler(callback_query):
                 bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     elif text == '6':
         content = read_txt_db()
-        seq = get_seq(content)
+        seq = get_seq(content,text)
         if content.get(str(message.chat.id)):
             keyboard10 = create_keyboard10(message.chat.id, content)
             adr, foto = get_one_loc(message.chat.id, content, seq)
@@ -432,7 +447,7 @@ def callback_handler(callback_query):
                 bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     elif text == '7':
         content = read_txt_db()
-        seq = get_seq(content)
+        seq = get_seq(content,text)
         if content.get(str(message.chat.id)):
             keyboard10 = create_keyboard10(message.chat.id, content)
             adr, foto = get_one_loc(message.chat.id, content, seq)
@@ -443,7 +458,7 @@ def callback_handler(callback_query):
                 bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     elif text == '8':
         content = read_txt_db()
-        seq = get_seq(content)
+        seq = get_seq(content,text)
         if content.get(str(message.chat.id)):
             keyboard10 = create_keyboard10(message.chat.id, content)
             adr, foto = get_one_loc(message.chat.id, content, seq)
@@ -454,7 +469,7 @@ def callback_handler(callback_query):
                 bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     elif text == '9':
         content = read_txt_db()
-        seq = get_seq(content)
+        seq = get_seq(content,text)
         if content.get(str(message.chat.id)):
             keyboard10 = create_keyboard10(message.chat.id, content)
             adr, foto = get_one_loc(message.chat.id, content, seq)
@@ -465,7 +480,7 @@ def callback_handler(callback_query):
                 bot.send_sticker(message.chat.id, "CAADAgADXwIAAgvNDgNx3DsRW3Y-UgI", reply_markup=keyboard10)
     elif text == '10':
         content = read_txt_db()
-        seq = get_seq(content)
+        seq = get_seq(content,text)
         if content.get(str(message.chat.id)):
             keyboard10 = create_keyboard10(message.chat.id, content)
             adr, foto = get_one_loc(message.chat.id, content, seq)
